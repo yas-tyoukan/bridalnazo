@@ -1,0 +1,34 @@
+.m_image {
+  position: relative;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  overflow: hidden;
+
+  &.failed {
+    width: 100%;
+    height: 100%;
+    > img {
+      width: 100%;
+    }
+  }
+
+  &.loading {
+  }
+
+  &.loaded {
+    > img {
+      width: 100%;
+    }
+
+    &.size-cover {
+      width: 100%;
+      height: 100%;
+      > img {
+        object-fit: cover;
+        height: 100%;
+        width: 100%;
+      }
+    }
+  }
+}

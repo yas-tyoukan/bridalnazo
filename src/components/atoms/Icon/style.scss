@@ -1,0 +1,79 @@
+.a_icon {
+  $sizeS: 16px;
+  $sizeM: 24px;
+  $sizeL: 32px;
+  $sizeLL: 48px;
+  $sizeXL: 64px;
+
+  position: relative;
+  display: inline-block;
+  vertical-align: text-bottom;
+  > svg, > svg > * {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+  }
+
+  &.size-s {
+    width: $sizeS;
+    height: $sizeS;
+  }
+
+  &.size-m {
+    width: $sizeM;
+    height: $sizeM;
+  }
+
+  &.size-l {
+    width: $sizeL;
+    height: $sizeL;
+  }
+
+  &.size-ll {
+    width: $sizeLL;
+    height: $sizeLL;
+  }
+
+  &.size-xl {
+    width: $sizeXL;
+    height: $sizeXL;
+  }
+
+  &.color-white {
+    > svg, > svg > * {
+      fill: colors(white);
+    }
+  }
+
+  &.color-green {
+    > svg, > svg > * {
+      fill: colors(textGreen);
+    }
+  }
+
+  &.color-error {
+    > svg, > svg > * {
+      fill: colors(textError);
+    }
+  }
+
+  &.color-blue {
+    > svg, > svg > * {
+      fill: colors(textBlue);
+    }
+  }
+
+  &.color-gray {
+    > svg, > svg > * {
+      fill: colors(textGray);
+    }
+  }
+
+  &.color-deep-gray {
+    > svg, > svg > * {
+      fill: colors(textDeepGray);
+    }
+  }
+}

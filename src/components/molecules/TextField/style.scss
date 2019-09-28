@@ -1,0 +1,208 @@
+.a_text-field {
+  // type="password"の高さがおかしくなるのでauto指定している
+  height: auto;
+
+  &.hidden {
+    display: none;
+  }
+
+  // material-uiのスタイルで不要なものを打ち消している
+  > * {
+    padding: 0 !important;
+    width: inherit;
+  }
+
+  > div > div {
+    padding: 0;
+  }
+
+  fieldset {
+    // material-uiはinputをfieldset要素でラップするが、そのスタイルは使わないため上書きしている
+    display: none;
+  }
+
+  .helper-text {
+    margin: 0;
+    min-height: 0;
+  }
+
+  .label {
+    margin-bottom: 10px;
+  }
+
+  .description {
+    margin: 10px 0;
+  }
+
+  .input {
+    color: colors(fieldInputText);
+    outline: 0;
+    padding: 8px 10px;
+    width: 100%;
+    box-sizing: border-box;
+    // font-sizeはiOSでズームがされない大きさを指定している
+    font-size: 16px;
+    line-height: 1.15;
+    background: colors(fieldBackground);
+
+    // iOS Safariで、inputとtextareaの内側の影をなくす
+    -webkit-appearance: none;
+
+    // chromeがデフォルトでinput部分を黄色にするのをなくす
+    // back-groundの指定をオーバーライドできないので
+    // -webkit-box-shadowで白の影を上書きさせ対応している
+    &:-webkit-autofill {
+      -webkit-box-shadow: 0 0 0 1000px colors(fieldBackground) inset;
+      color: colors(fieldDisabled) !important;
+    }
+
+    &[type=time], &[type=date] {
+      // selectと同じように見せるためにappearance:noneを指定している
+      // ただし、selectで設定しているプルダウンの下三角マークは表示していない
+      // なぜなら、各ブラウザがデフォルトでtimeやdateに表示するUIと被って表示されてしまうためである
+      // IE11にappearanceはないが、type=time,dateもサポートしていないので何も指定しなくてよい
+      // (IE11の場合input[type=text]と同じ見た目で同じ挙動になる)
+      -webkit-appearance: none;
+      -moz-appearance: none;
+      appearance: none;
+    }
+
+    &[disabled] {
+      background: colors(fieldDisabled);
+      color: colors(fieldDisabled);
+      border: none;
+    }
+
+    &.align-left {
+      text-align: left;
+    }
+
+    &.align-right {
+      text-align: right;
+    }
+
+    &.align-center {
+      text-align: center;
+    }
+  }
+
+
+  &.has-error {
+    input, textarea, select {
+      // focus時の背景色指定、ボーダー指定よりも優先なのでimportant指定している
+      border-color: colors(fieldErrorBorder) !important;
+      background: colors(fieldErrorBackground) !important;
+      color: colors(fieldErrorText);
+    }
+  }
+
+  select.input {
+    padding-right: 30px;
+
+    &.is-value-empty {
+      color: colors(fieldPlaceholderText);
+    }
+
+    & + .drop-down-icon {
+      position: absolute;
+      top: 13px;
+      right: 10px;
+    }
+
+    &:focus {
+      // focus時のスタイルは、material-uiのスタイルを上書きするために書いている
+      background-color: transparent;
+      @include border-radius();
+    }
+  }
+
+  &.align-right {
+    input {
+      text-align: right;
+    }
+  }
+
+  &.inline-block {
+    display: inline-block;
+    margin-bottom: 10px;
+
+    &:not(:last-child) {
+      margin-right: 10px;
+    }
+  }
+
+  .input {
+    height: 36px;
+    border: 1px solid colors(fieldBorder);
+
+    // placeholderの設定
+    &::-webkit-input-placeholder, &::-moz-placeholder, &::-moz-placeholder {
+      color: colors(fieldPlaceholderText);
+      opacity: 1;
+    }
+
+    &:focus {
+      border-color: colors(fieldFocusBorder);
+    }
+  }
+
+  textarea.input {
+    padding: 10px;
+  }
+
+  &.size-xs {
+    width: 96px;
+  }
+
+  &.size-s {
+    width: 160px;
+  }
+
+
+  &.standard {
+    position: relative;
+    // labelのz-index指定がTextFieldの外の要素に影響しないようにz-index:0を指定
+    z-index: 0;
+
+    > .label {
+      // 上下中央に見えるように位置調整
+      position: absolute;
+      z-index: 1;
+      line-height: 1;
+      display: inline-block;
+      margin: auto;
+      top: 0;
+      bottom: 0;
+      height: 1em;
+      vertical-align: unset;
+    }
+
+    .formControl {
+      border-bottom: colors(fieldBorder);
+
+      &:before {
+        border: none !important;
+      }
+
+      .input {
+        border-top: none !important;
+        border-left: none !important;
+        border-right: none !important;
+        padding-left: 74px;
+
+        &:focus {
+          border-bottom-color: #21b0af !important;
+          border-bottom-width: 2px !important;
+        }
+      }
+    }
+  }
+  .clear-date {
+    position: absolute;
+    margin-top: 10px;
+  }
+  .btn-full-width {
+    right: 10px;
+  }
+  position: relative;
+}

@@ -1,0 +1,54 @@
+.m_help-tooltip {
+  $tooltipColor: #2196F3;
+  &.button-wrapper {
+    padding: 0 8px;
+    line-height: 16px;
+    > .a_icon-button {
+      padding: 0;
+      vertical-align: text-bottom;
+      .a_icon {
+        width: 14px;
+        height: 14px;
+        > svg, > svg > * {
+          fill: $tooltipColor;
+        }
+      }
+    }
+  }
+  &.tooltip {
+    > * {
+      position: relative;
+      top: 10px;
+      background: $tooltipColor;
+      padding: 0;
+
+    }
+    $arrowSize: 10px;
+    // 上下方向の矢印だけ対応 左右方向は未対応
+    &[x-placement*="top"] > *:before {
+      content: "";
+      position: absolute;
+      top: 100%;
+      left: 50%;
+      margin-left: -$arrowSize;
+      border: $arrowSize solid transparent;
+      border-top: $arrowSize solid $tooltipColor;
+    }
+    &[x-placement*="bottom"] > *:before {
+      content: "";
+      position: absolute;
+      bottom: 100%;
+      left: 50%;
+      margin-left: -$arrowSize;
+      border: $arrowSize solid transparent;
+      border-bottom: $arrowSize solid $tooltipColor;
+    }
+    .contents {
+      padding: 20px;
+      font-size: 12px;
+      color: colors(white);
+      background: $tooltipColor;
+      @include border-radius();
+    }
+  }
+}

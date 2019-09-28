@@ -1,0 +1,18 @@
+{
+  "log4js": {
+    "appenders": {
+      "out": {
+        "type": "console"
+      }
+    },
+    "categories": {
+      "default": {
+        "appenders": [
+          "out"
+        ],
+        "level": "ALL"
+      }
+    },
+    "pm2": true
+  }
+}

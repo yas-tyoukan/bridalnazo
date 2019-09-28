@@ -1,0 +1,17 @@
+.m_loading {
+  z-index: 1000000;
+  text-align: center;
+  &.inList{
+    position: relative;
+    z-index: auto;
+    height: 50px;
+  }
+  .back {
+    width: 100%;
+    height: 100%;
+    position: absolute;
+    background: #ffffff;
+    top: 0;
+    left: 0;
+  }
+}

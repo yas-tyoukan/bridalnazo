@@ -1,0 +1,31 @@
+// 全コンポーネントで使用する共通のルール
+
+html, body {
+  height: 100%;
+  width: 100%;
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  color: colors(textBlack);
+  text-align: left;
+  word-wrap: break-word;
+  -webkit-overflow-scrolling: touch;
+  overflow-scrolling: touch;
+  // font-familyについてはコンポーネントに属する要素の文字であればtheme/index.jsの設定が使われるが、現状そうでない要素があるため暫定対応で指定 (HMX-5437)
+  font-family: -apple-system, BlinkMacSystemFont, "Helvetica Neue", Roboto, "Droid Sans", "Yu Gothic", YuGothic, "\30E1\30A4\30EA\30AA", Meiryo, "\30D2\30E9\30AE\30CE\89D2\30B4 ProN W3", "Hiragino Kaku Gothic ProN", "\FF2D\FF33 \FF30\30B4\30B7\30C3\30AF", sans-serif;
+  > #root {
+    height: 100%;
+    width: 100%;
+  }
+}
+
+a {
+  cursor: pointer;
+  color: colors(link);
+  text-decoration: none;
+  &:hover {
+    text-decoration: underline;
+  }
+}

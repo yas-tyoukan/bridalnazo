@@ -1,0 +1,56 @@
+.t_with-header-template {
+  height: 100%;
+
+  > * {
+    width: 100%;
+  }
+
+  > .header-wrapper, > .footer-wrapper {
+    position: fixed;
+    z-index: 1;
+  }
+
+  > .header-wrapper {
+    top: 0;
+  }
+
+  > .footer-wrapper {
+    bottom: 0;
+  }
+
+  > .contents-wrapper {
+    margin: auto;
+    overflow: auto;
+    height: 100%;
+    box-sizing: border-box;
+  }
+
+  > .navigation-wrapper {
+    $time: .2s;
+    transition: transform $time ease 0s;
+    overflow: hidden;
+
+    &.hide {
+      transition: transform $time ease 0s, height 0s ease $time;
+      height: 0 !important;
+
+      &.header-wrapper {
+        transform: translateY(-100%);
+      }
+
+      &.footer-wrapper {
+        transform: translateY(100%);
+      }
+    }
+
+    > * {
+      margin: auto;
+    }
+  }
+
+  &.max-width-sp {
+    > .contents-wrapper {
+      max-width: map-get($breakpoint, md);
+    }
+  }
+}

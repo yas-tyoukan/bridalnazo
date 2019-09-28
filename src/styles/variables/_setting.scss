@@ -1,0 +1,23 @@
+$breakpoint: (
+  // Material-UIのテーマと合わせる
+  // src/components/theme/index.js
+  md: 768px,
+  sm: 544px,
+);
+
+// 文字サイズ
+$fontSize: (
+  buttonFontSize: 16px,
+  fontSizeSmall: 10px,
+  fontSizeNormal: 14px,
+  fontSizeLarge: 16px,
+  fontSizeXLarge: 20px,
+);
+
+@function fontSize($key) {
+  @return map-get($fontSize, $key);
+}
+
+// SPデザインをPCデザインでも適用する際の定義
+// コンテンツの最大幅
+$spContentsMaxWidth: 768px;

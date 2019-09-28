@@ -7,7 +7,7 @@ const TYPE_RING = 'yubiwa_is_beautiful';
 /**
  * アカウント
  */
-router.use('/accounts')
+router.route('/')
   .post((req, res, next) => {
     const { body } = req;
     const { name, type } = body;
@@ -19,7 +19,7 @@ router.use('/accounts')
       });
       return;
     }
-    if (!type || type !== TYPE_GRASS || type !== TYPE_RING) {
+    if (!type || (type !== TYPE_GRASS && type !== TYPE_RING)) {
       res.status(400).json({
         message: 'invalid type',
       });

@@ -1,0 +1,9 @@
+.a_drop-down-icon {
+  position: absolute;
+  width: 5px;
+  height: 5px;
+  border-bottom: 2px solid colors(textGray);
+  border-right: 2px solid colors(textGray);
+  transform: rotate(45deg);
+  pointer-events: none;
+}

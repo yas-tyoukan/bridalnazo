@@ -1,0 +1,230 @@
+.a_button {
+  $borderWidth: 1px;
+
+  // default size-m
+  @mixin paddingSizeM($withBorder: false) {
+    @if $withBorder {
+      padding: 15px 7px !important;
+    } @else {
+      padding: 16px 8px !important;
+    }
+  }
+
+  // size-l
+  @mixin paddingSizeL($withBorder: false) {
+    @if $withBorder {
+      padding: 19px 7px !important;
+    } @else {
+      padding: 20px 8px !important;
+    }
+  }
+
+  // size-s
+  @mixin paddingSizeS($withBorder: false) {
+    @if $withBorder {
+      padding: 9px 7px !important;
+    } @else {
+      padding: 10px 8px !important;
+    }
+  }
+
+  // size-xs
+  @mixin paddingSizeXS($withBorder: false) {
+    @if $withBorder {
+      padding: 7px 8px !important;
+    } @else {
+      padding: 8px 9px !important;
+    }
+  }
+
+  // variant normal
+  @mixin normal($color) {
+    background-color: $color;
+    // TODO hover時の色は仮
+    &:hover {
+      background-color: lighten($color, 10%);
+    }
+    .label {
+      color: colors(white);
+    }
+  }
+
+  // variant ghost1
+  @mixin ghost1($color) {
+    background-color: colors(white);
+    border: $borderWidth solid $color;
+    &:hover {
+      background-color: rgba(0, 0, 0, .1);
+    }
+    .label {
+      color: $color;
+    }
+  }
+
+  // variant ghost2
+  @mixin ghost2($color) {
+    background-color: colors(white);
+    &:hover {
+      background-color: rgba(0, 0, 0, .1);
+    }
+    .label {
+      color: $color;
+    }
+  }
+
+  .label {
+    text-transform: none;
+    font-weight: bold;
+    text-align: center;
+
+    // ボタン2のサイズ
+    font-size: 13px;
+    line-height: 1.3;
+  }
+
+  // size-m (default)
+  &.size-m {
+    @include paddingSizeM();
+  }
+
+  // size-l
+  &.size-l {
+    @include paddingSizeL();
+
+    &.ghost1 {
+      border: $borderWidth solid colors(buttonSmallBorder);
+      @include paddingSizeL(true);
+    }
+  }
+
+  // size-s
+  &.size-s {
+    @include border-radius(100px);
+    @include paddingSizeS();
+
+    &.ghost1 {
+      border: $borderWidth solid colors(buttonSmallBorder);
+      @include paddingSizeS(true);
+    }
+  }
+
+  // size-xs
+  &.size-xs {
+    @include border-radius(100px);
+    @include paddingSizeXS();
+
+    &.ghost1 {
+      border: $borderWidth solid colors(buttonSmallBorder);
+      @include paddingSizeXS(true);
+    }
+  }
+
+  // color-gray
+  &.color-gray {
+    $color: colors(buttonGray);
+    @include normal($color);
+
+    &.ghost1 {
+      @include ghost1($color);
+    }
+
+    &.ghost2 {
+      @include ghost2($color);
+    }
+  }
+
+  // color-gray2
+  &.color-gray2 {
+    $color: colors(buttonGray2);
+    @include normal($color);
+
+    &.ghost1 {
+      @include ghost1($color);
+    }
+
+    &.ghost2 {
+      @include ghost2($color);
+    }
+  }
+
+  // color-green
+  &.color-green {
+    $color: colors(buttonGreen);
+    @include normal($color);
+
+    &.ghost1 {
+      @include ghost1($color);
+    }
+
+    &.ghost2 {
+      @include ghost2($color);
+    }
+  }
+
+  // color-red
+  &.color-red {
+    $color: colors(buttonRed);
+    @include normal($color);
+
+    &.ghost1 {
+      @include ghost1($color);
+    }
+
+    &.ghost2 {
+      @include ghost2($color);
+    }
+  }
+
+  // color-blue
+  &.color-blue {
+    $color: colors(buttonBlue);
+    @include normal($color);
+
+    &.ghost1 {
+      @include ghost1($color);
+    }
+
+    &.ghost2 {
+      @include ghost2($color);
+    }
+  }
+
+  // color-cancel
+  &.color-cancel {
+    $color: colors(buttonCancelFont);
+    $borderColor: colors(buttonCancelBorder);
+    background-color: colors(white);
+    border: 1px solid $borderColor;
+
+    .label {
+      color: $color;
+    }
+
+    &:hover {
+      background-color: rgba(0, 0, 0, .1);
+    }
+  }
+
+  // color-link
+  &.color-link{
+    $color: colors(buttonGreen);
+    color: $color;
+    background: colors(backgroundWhite);
+  }
+
+  // color-disabled
+  &.color-disabled {
+    @include normal(colors(buttonDisabled));
+  }
+
+  // disabledのスタイル
+  &[disabled] {
+    $color: colors(buttonDisabled);
+    @include normal($color);
+  }
+
+  // 幅
+  &.width-m {
+    width: 166px;
+  }
+}

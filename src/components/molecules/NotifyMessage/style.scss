@@ -1,0 +1,20 @@
+.m_notify-message {
+  padding: 10px 16px;
+  width: 100%;
+  max-width: map-get($breakpoint, md);
+  box-sizing: border-box;
+  margin: auto;
+  > .back {
+    $height: 56px;
+    width: 100%;
+    height: $height;
+    background: colors(backgroundOverayBlack);
+    text-align: center;
+    color: colors(textWhite);
+    @include border-radius();
+
+    > .message {
+      line-height: $height;
+    }
+  }
+}

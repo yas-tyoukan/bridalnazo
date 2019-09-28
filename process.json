@@ -1,0 +1,9 @@
+[{
+  "name": "admin",
+  "script": "app.js",
+  "exec_mode": "cluster_mode",
+  "instances": 0,
+  "env": {
+    "NODE_PATH": "."
+  }
+}]

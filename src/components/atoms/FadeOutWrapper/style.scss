@@ -1,0 +1,26 @@
+.a_fade-out-wrapper {
+  @keyframes fadeOut {
+    0% {
+      opacity: 1;
+    }
+    80% {
+      opacity: 1;
+    }
+    100% {
+      opacity: 0;
+    }
+  }
+
+  display: none;
+  opacity: 0;
+
+  &.time-1 {
+    display: block;
+    animation: fadeOut 1.25s ease;
+  }
+
+  &.time-2 {
+    display: block;
+    animation: fadeOut 2.5s ease;
+  }
+}

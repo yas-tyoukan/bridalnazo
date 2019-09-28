@@ -1,0 +1,10 @@
+.a_footer-button-wrapper {
+  background: colors(backgroundWhite);
+  padding: 8px 16px;
+  box-sizing: border-box;
+  max-width: map-get($breakpoint, md);
+
+  > *:not(:first-child) {
+    margin-top: 10px;
+  }
+}

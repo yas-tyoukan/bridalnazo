@@ -1,0 +1,165 @@
+$palette: (
+  // TODO 色名は仮。近い色の名前をつけている。DesignStudioで名前決める予定なので、決まったらその命名に合わせる
+  // 色名の取得はここでやった http://chir.ag/projects/name-that-color/
+  scooter: #30B6C0,
+  viking: #57D0D9,
+  morningGlory: #A1E1E5,
+  violetRed: #F23D73,
+  lavendorBlush:#FFF2F6,
+  azureRadiance: #007AFF,
+  capeCod: #3B4043,
+  rollingStone: #6F7478,
+  regentGray: #939CA5,
+  geyser: #CCD5DC,
+  geyser-transparency-50: rgba(204, 213, 220, 0.5),
+  paleGray: #E5E5E5,
+  blackHaze: #FAFBFB,
+  aliceBlue: #F0F3F5,
+  linkWater: #F0F5FC,
+  white: #FFFFFF,
+  vividYellow: #FFDE31,
+  overlayBlack: rgba(59, 64, 67, .8),
+  overlayBlack20: rgba(59, 64, 67, .2),
+  overlayWhite: rgba(255, 255, 255, .6),
+);
+
+@function palette($key) {
+  @return map-get($palette, $key);
+}
+
+$colors: (
+  // $colors だと $colors[hoge] !important と書いた時にimportant指定が無視されてしまうので、#colorsにしている
+  // TODO 一旦今まで使っている色をそのままその名前でコピー
+  base: rgb(220, 218, 212),
+  accent: #F23D73,
+  accent-b80: #BF3053,
+  accent-s5: #FFF2F6,
+  theme: #21b0af,
+  theme-60: #78cdd4,
+  theme-20: #d0eef0,
+  theme-light: #55c8c7,
+  button: #30B6C0,
+  button-dark: #138999,
+  gray-80: #444444,
+  gray-60: #666666,
+  gray-40: #999999,
+  gray-20: #cccccc,
+  gray-10: #e3e5e5,
+  gray-05: #edefef,
+  back: #30B6C0,
+  errorBackground: rgb(221, 239, 237),
+  translucentWhite: rgba(255, 255, 255, 0.8),
+  //  一旦今まで使っている色をそのままその名前でコピー ここまで
+  link: palette(scooter),
+  font: palette(capeCod),
+  // white
+  white: palette(white),
+  // text
+  textError: palette(violetRed),
+  textRed: palette(violetRed),
+  textGreen: palette(scooter),
+  textBlue: palette(azureRadiance),
+  textLightGray: palette(geyser),
+  textGray: palette(regentGray),
+  textDeepGray: palette(rollingStone),
+  textBlack: palette(capeCod),
+  textWhite: palette(white),
+  // form field
+  fieldChecked: palette(scooter),
+  fieldUnchecked: palette(geyser),
+  fieldDisabled: palette(linkWater),
+  fieldBackground: palette(white),
+  fieldBorder: palette(geyser),
+  fieldFocusBorder: palette(azureRadiance),
+  fieldErrorBorder: palette(violetRed),
+  fieldInputText: palette(capeCod),
+  fieldErrorText: palette(violetRed),
+  fieldPlaceholderText: palette(geyser),
+  fieldErrorBackground: palette(lavendorBlush),
+  // UploadFileField
+  fieldFileBackground: palette(linkWater),
+  fieldFileColor: palette(geyser),
+  // button
+  buttonGreen: palette(scooter),
+  buttonRed: palette(violetRed),
+  buttonGray: palette(rollingStone),
+  buttonGray2: palette(regentGray),
+  buttonBlue: palette(azureRadiance),
+  buttonCancelFont: palette(regentGray),
+  buttonCancelBorder: palette(geyser),
+  buttonSmallBorder: palette(geyser),
+  buttonDisabled: palette(geyser),
+  headerBorder: palette(geyser),
+  // background
+  backgroundWhite: palette(white),
+  backgroundGray: palette(paleGray),
+  backgroundLightGray: palette(linkWater),
+  backgroundLightGray2: palette(aliceBlue),
+  backgroundOverayBlack: palette(overlayBlack),
+  // その他
+  sectionBorder: palette(geyser),
+  sectionBackgroundGray: palette(blackHaze),
+  overlayButtonBackground: palette(overlayBlack20),
+
+  // icon
+  iconError: palette(violetRed),
+  iconGreen: palette(scooter),
+  iconGray: palette(regentGray),
+
+  // badge
+  badge: palette(violetRed),
+
+  // applicant status
+  applicantStatusAllBackground: palette(white),
+  applicantStatusAllText: palette(regentGray),
+  applicantStatusAllIcon: palette(regentGray),
+  applicantStatusNoActionBackground: palette(violetRed),
+  applicantStatusNoActionText: palette(white),
+  applicantStatusNoActionIcon: palette(white),
+  applicantStatusInActionBackground: palette(scooter),
+  applicantStatusInActionText: palette(white),
+  applicantStatusInActionIcon: palette(white),
+  applicantStatusAcceptedBackground: palette(aliceBlue),
+  applicantStatusAcceptedText: palette(regentGray),
+  applicantStatusAcceptedIcon: palette(regentGray),
+  applicantStatusRejectedBackground: palette(aliceBlue),
+  applicantStatusRejectedText: palette(regentGray),
+  applicantStatusRejectedIcon: palette(regentGray),
+
+  // border
+  borderGray: palette(geyser),
+
+  // label
+  labelGreenText: palette(white),
+  labelGreenBackground: palette(scooter),
+  labelYellowText: palette(capeCod),
+  labelYellowBackground: palette(vividYellow),
+
+  // hito-manager-agreement
+  hitoManagerAgreementTableBorder: palette(geyser),
+
+  // register from an sales invitation
+  registerFromAnSalesInvitationBackground: palette(aliceBlue),
+
+  // register from an sales work
+  registerFromAnSalesSectionTitleBackground: palette(aliceBlue),
+
+  // navigation footer border
+  navigationFooterBorder: palette(geyser-transparency-50),
+
+  // NavigationTabs
+  navigationTabsIndicatorBackground: palette(scooter),
+
+  // OrderPlanDetail
+  orderPlanDetailListLabelBorder: palette(geyser-transparency-50),
+  orderPlanDetailLimitedNoticeBackground: palette(geyser),
+
+  // OrdersList order status background
+  orderStatusGreenBackground: palette(scooter),
+  orderStatusRedBackground: palette(violetRed),
+  orderStatusGrayBackground: palette(regentGray),
+);
+
+@function colors($key) {
+  @return map-get($colors, $key);
+}

@@ -1,0 +1,55 @@
+@mixin border-radius($value: 4px) {
+  border-radius: $value;
+}
+
+// scrollbar
+@mixin scrollbar {
+  &::-webkit-scrollbar {
+    width: 8px;
+    &:horizontal {
+      height: 5px;
+    }
+  }
+  &::-webkit-scrollbar-thumb {
+    background: rgba(0, 0, 0, .5);
+    @include border-radius();
+  }
+  &::-webkit-scrollbar-corner {
+    background: rgba(0, 0, 0, 0);
+  }
+}
+
+@mixin ellipsis{
+  overflow: hidden;
+  white-space: nowrap;
+  text-overflow: ellipsis;
+}
+
+/*
+  以下に従って画面サイズに合わせて名前をつける
+  Sm (≥ 544px)　Md (≥ 768px)
+  Lg (≥ 992px)　Xl (≥ 1200px)
+*/
+@mixin overMd {
+  @media only screen and (min-width: map-get($breakpoint, md)) {
+    @content;
+  }
+}
+
+@mixin underMd {
+  @media only screen and (max-width: map-get($breakpoint, md)) {
+    @content;
+  }
+}
+
+@mixin overSm {
+  @media only screen and (min-width: map-get($breakpoint, sm)) {
+    @content;
+  }
+}
+
+@mixin underSm {
+  @media only screen and (max-width: map-get($breakpoint, sm)) {
+    @content;
+  }
+}

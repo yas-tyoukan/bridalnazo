@@ -2,7 +2,7 @@ import {
   REQUEST_POST_ACCOUNT,
   REQUEST_POST_ACCOUNT_FAILURE,
   REQUEST_POST_ACCOUNT_SUCCESS,
-} from '~/actions/accounts';
+} from '../actions/accounts';
 
 const TYPE_GRASS = 'megane_is_good';
 
