@@ -2,18 +2,16 @@ import React from 'react';
 import Typography from '~/components/atoms/Typography';
 import TitleAndMessageTemplate from '~/components/templates/TitleAndMessageTemplate';
 
-const NotFound = () => (
+export default () => (
   <TitleAndMessageTemplate
     className="p_not-found"
-    title="ご指定のページが見つかりません"
+    title="おめでとう！"
   >
     <Typography
       variant="body2"
       color="black"
     >
-      ここには何もないよ
+      おめでとう！
     </Typography>
   </TitleAndMessageTemplate>
 );
-
-export default NotFound;

@@ -48,37 +48,34 @@ export function postAccount(name, targetType) {
   };
 }
 
-function requestGet(targetType) {
+function requestGet() {
   return {
     type: REQUEST_GET_ACCOUNTS,
-    targetType,
   };
 }
 
-function receiveGetSuccess(data, targetType) {
+function receiveGetSuccess(data) {
   return {
     type: REQUEST_GET_ACCOUNTS_SUCCESS,
     data,
-    targetType,
   };
 }
 
-function requestGetFailure(error, targetType) {
+function requestGetFailure(error) {
   return {
     type: REQUEST_GET_ACCOUNTS_FAILURE,
     error,
-    targetType,
   };
 }
 
-export function getAccount(targetType) {
+export function getAccounts() {
   return (dispatch) => {
-    dispatch(requestGet(targetType));
+    dispatch(requestGet());
     return axios.get('/api/accounts')
       .then(({ data }) => {
-        dispatch(receiveGetSuccess(data, targetType));
+        dispatch(receiveGetSuccess(data));
       }, (e) => {
-        dispatch(requestGetFailure(e, targetType));
+        dispatch(requestGetFailure(e));
         throw e;
       });
   };
@@ -105,7 +102,7 @@ function requestDeleteFailure(error) {
   };
 }
 
-export function deleteAccount() {
+export function deleteAccounts() {
   return (dispatch) => {
     dispatch(requestDelete());
     return axios.delete('/api/accounts')

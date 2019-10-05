@@ -106,7 +106,7 @@ export class MeganePageInner extends React.PureComponent {
         footer={(
           <FooterButtonWrapper>
             <Button color="green" disabled={!valid} onClick={this.onSubmit} fullWidth>
-              認証メールを送信する
+              送信する
             </Button>
           </FooterButtonWrapper>
         )}
@@ -118,7 +118,7 @@ export class MeganePageInner extends React.PureComponent {
             めがねを見つけた！
           </Typography>
           <Typography variant="body2">
-            名前を入力して送信ボタンを押してね
+            名前を入力して送信するボタンを押してね
           </Typography>
           <TextField
             className="field"

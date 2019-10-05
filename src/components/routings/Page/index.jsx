@@ -34,8 +34,8 @@ class Page extends Route {
 
   updatePageTitle() {
     const {
-      title,
-      titleSuffix,
+      title = '',
+      titleSuffix = '',
       changeLocation,
     } = this.props;
     document.title = `${title}${titleSuffix}`;
