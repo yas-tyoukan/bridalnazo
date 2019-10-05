@@ -39,12 +39,12 @@ app.use('/', require('./router'));
 // ------ エラーハンドリング ------ //
 // eslint-disable-next-line no-unused-vars
 app.use((err, req, res, next) => {
-  res.json({
-    status: 500,
+  console.log(err);
+  res.status(err.status || 500).json({
     message: 'some error',
     method: req.method,
     url: req.originalUrl,
-    detail: err,
+    code: err.code || '',
   });
 });
 

@@ -21,6 +21,29 @@ export class GlobalNotifierInner extends React.PureComponent {
     notifiedAt: null,
   };
 
+  static getDerivedStateFromProps(nextProps, prevState) {
+    const { notifiedAt } = nextProps;
+    const {
+      notifiedAt: prevNotifiedAt,
+      notifyMessageTimer,
+      notificationWrapperEl,
+    } = prevState;
+    if (prevNotifiedAt === notifiedAt) {
+      return prevState;
+    }
+    clearTimeout(notifyMessageTimer);
+    // FadeOutWrapperでtime=2を指定している時に、通知が完全に消えるのは2.5秒かかる
+    const timer = setTimeout(() => {
+      if (notificationWrapperEl) {
+        notificationWrapperEl.style.display = 'none';
+      }
+    }, 2500);
+    return {
+      notifiedAt,
+      notifyMessageTimer: timer,
+    };
+  }
+
   constructor() {
     super();
     this.state = {
@@ -28,23 +51,23 @@ export class GlobalNotifierInner extends React.PureComponent {
     };
   }
 
-  componentWillReceiveProps(nextProps) {
-    const { notifiedAt } = this.props;
-    const { notifyMessageTimer } = this.state;
-    if (notifiedAt !== nextProps.notifiedAt) {
-      clearTimeout(notifyMessageTimer);
-      // FadeOutWrapperでtime=2を指定している時に、通知が完全に消えるのは2.5秒かかる
-      const timer = setTimeout(() => {
-        const { notificationWrapperEl } = this;
-        if (notificationWrapperEl) {
-          notificationWrapperEl.style.display = 'none';
-        }
-      }, 2500);
-      this.setState({
-        notifyMessageTimer: timer,
-      });
-    }
-  }
+  // componentWillReceiveProps(nextProps) {
+  //   const { notifiedAt } = this.props;
+  //   const { notifyMessageTimer } = this.state;
+  //   if (notifiedAt !== nextProps.notifiedAt) {
+  //     clearTimeout(notifyMessageTimer);
+  //     // FadeOutWrapperでtime=2を指定している時に、通知が完全に消えるのは2.5秒かかる
+  //     const timer = setTimeout(() => {
+  //       const { notificationWrapperEl } = this;
+  //       if (notificationWrapperEl) {
+  //         notificationWrapperEl.style.display = 'none';
+  //       }
+  //     }, 2500);
+  //     this.setState({
+  //       notifyMessageTimer: timer,
+  //     });
+  //   }
+  // }
 
   render() {
     const {
@@ -58,7 +81,7 @@ export class GlobalNotifierInner extends React.PureComponent {
             className="o_global-notifier"
             key={notifiedAt}
             ref={(el) => {
-              this.notificationWrapperEl = el;
+              this.setState({ notificationWrapperEl: el });
             }}
           >
             <FadeOutWrapper time={2}>

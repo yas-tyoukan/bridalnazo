@@ -21,7 +21,7 @@ const validateName = (value) => {
   return value.length < 128 ? '' : '名前を128文字以下で入力してください';
 };
 
-const mapStateToProps = ({ megane }) => megane;
+const mapStateToProps = ({ meganePage }) => meganePage;
 
 const mapDispatchToProps = dispatch => ({
   registerName(name) {
@@ -77,7 +77,7 @@ export class MeganePageInner extends React.PureComponent {
           return;
         }
         const { history } = this.props;
-        history.push('/you-find-megane');
+        history.push('/you-find-megane/complete');
       })
       .catch(() => {
         if (this.unmount) {

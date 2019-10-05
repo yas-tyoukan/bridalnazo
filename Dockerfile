@@ -23,11 +23,11 @@ COPY . /app
 COPY --from=installer /etc/localtime /etc/localtime
 COPY --from=installer /app/node_modules /app/node_modules
 COPY --from=builder /app/public/js /app/public/js
-COPY --from=builder /app/public_authenticated/js /app/public_authenticated/js
 WORKDIR /app
 ENV NOROOT octcat
 RUN addgroup -S $NOROOT && \
     adduser -S -g $NOROOT $NOROOT  && \
     chown -R $NOROOT:$NOROOT /app
 USER $NOROOT
+EXPOSE 3000
 CMD ["npx", "pm2", "start", "process.json", "--no-daemon"]

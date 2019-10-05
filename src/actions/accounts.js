@@ -43,6 +43,7 @@ export function postAccount(name, targetType) {
         dispatch(receivePostSuccess(data, targetType));
       }, (e) => {
         dispatch(requestPostFailure(e, targetType));
+        throw e;
       });
   };
 }
@@ -78,6 +79,7 @@ export function getAccount(targetType) {
         dispatch(receiveGetSuccess(data, targetType));
       }, (e) => {
         dispatch(requestGetFailure(e, targetType));
+        throw e;
       });
   };
 }
@@ -111,6 +113,7 @@ export function deleteAccount() {
         dispatch(receiveDeleteSuccess(data));
       }, (e) => {
         dispatch(requestDeleteFailure(e));
+        throw e;
       });
   };
 }
