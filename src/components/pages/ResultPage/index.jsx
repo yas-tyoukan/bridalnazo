@@ -12,15 +12,10 @@ import Typography from '~/components/atoms/Typography';
 import { notifyMessage } from '../../../actions/notify';
 import Button from '~/components/atoms/Button';
 
-const mapStateToProps = ({ adminPage }) => adminPage;
-
-const types = [{
-  label: 'めがね正解者',
-  type: 'megane_is_good',
-}, {
-  label: 'ゆびわ正解者',
-  type: 'yubiwa_is_beautiful',
-}];
+const mapStateToProps = ({ adminPage }, ownProps) => ({
+  ...adminPage,
+  ...ownProps.match.params,
+});
 
 const mapDispatchToProps = dispatch => ({
   getAccounts() {
@@ -37,9 +32,9 @@ const mapDispatchToProps = dispatch => ({
 export class AdminPageInner extends React.PureComponent {
   static propTypes = {
     getAccounts: PropTypes.func.isRequired,
-    deleteAllAccounts: PropTypes.func.isRequired,
     notifyServerError: PropTypes.func.isRequired,
     loading: PropTypes.bool,
+    type: PropTypes.string.isRequired,
     accounts: PropTypes.arrayOf(PropTypes.shape({
       name: PropTypes.string,
       type: PropTypes.string,
@@ -52,70 +47,57 @@ export class AdminPageInner extends React.PureComponent {
     accounts: [],
   };
 
-  constructor() {
-    super();
-
-    this.deleteAllAccounts = ::this.deleteAllAccounts;
-  }
-
   componentDidMount() {
     const { getAccounts } = this.props;
-    getAccounts();
+    getAccounts().catch(() => {
+      if (this.unmount) {
+        return;
+      }
+      const { notifyServerError } = this.props;
+      notifyServerError();
+    });
   }
 
-  deleteAllAccounts() {
-    // eslint-disable-next-line no-alert
-    if (!window.confirm('全て削除しますか？これは復元できない操作です')) {
-      return;
-    }
-    const { deleteAllAccounts } = this.props;
-    deleteAllAccounts()
-      .catch(() => {
-        if (this.unmount) {
-          return;
-        }
-        const { notifyServerError } = this.props;
-        notifyServerError();
-      });
+  componentWillUnmount() {
+    this.unmount = true;
   }
 
   render() {
-    const { loading, accounts } = this.props;
+    const { loading, accounts, type: currentType } = this.props;
     if (loading) {
       return <Loading />;
     }
     return (
-      <div className="p_admin">
+      <div className="p_result">
         <Typography className="title-message" variant="h2">
           管理画面
         </Typography>
+        <br />
+        <br />
+        <br />
+        <Typography variant="h3">
+          クリアした人
+        </Typography>
+        {accounts
+          .filter(({ type }) => type === currentType)
+          .map(({
+            name,
+            created_at: time,
+          }) => (
+            <p key={`${name}-${time}`}>
+              <span style={{ fontFamily: 'monospace' }}>
+                {moment(time).format('HH:mm:ss')}
+                ｜
+              </span>
+              <span>{name}</span>
+            </p>
+          ))}
+        <br />
+        <br />
+        <br />
         <Button color="red" onClick={this.deleteAllAccounts}>
           全削除
         </Button>
-        <br />
-        <br />
-        <br />
-        {types.map(({ label, type: currentType }) => (
-          <div key={currentType}>
-            <Typography variant="h3">
-              {label}
-            </Typography>
-            {accounts
-              .filter(({ type }) => type === currentType)
-              .map(({
-                name,
-                created_at: time,
-              }) => (
-                <p key={`${name}-${time}`}>
-                  <span style={{ fontFamily: 'monospace' }}>
-                    {moment(time).format('HH:mm:ss')}
-                    ｜
-                  </span>
-                  <span>{name}</span>
-                </p>
-              ))}
-          </div>
-        ))}
       </div>
     );
   }
