@@ -2,6 +2,7 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import { withRouter } from 'react-router';
+import { Link } from 'react-router-dom';
 import moment from 'moment';
 
 import './style';
@@ -92,6 +93,18 @@ export class AdminPageInner extends React.PureComponent {
         <Button color="red" onClick={this.deleteAllAccounts}>
           全削除
         </Button>
+        <div>
+          <Link to="/result/megane-is-good">めがねを見つけてくれた人たち</Link>
+        </div>
+        <div>
+          <Link to="/result/yubiwa-is-beautiful">ゆびわを見つけてくれた人たち</Link>
+        </div>
+        <div>
+          <Link to="/check-pass/megane-is-good">めがねパスコード入力ページ</Link>
+        </div>
+        <div>
+          <Link to="/check-pass/yubiwa-is-beautiful">ゆびわパスコード入力ページ</Link>
+        </div>
         <br />
         <br />
         <br />

@@ -38,7 +38,7 @@ router.route('/')
     );
   })
   .get((req, res, next) => config.pool.query(
-    'select * from accounts',
+    'select * from accounts order by created_at desc',
     (err, rows) => {
       if (err) {
         return next(err);

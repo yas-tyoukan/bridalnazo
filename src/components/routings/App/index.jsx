@@ -21,7 +21,7 @@ export default () => (
       <Page path="/find/:target" exact component={YouFindPage} />
       <Page path="/find/:target/complete" component={CompletePage} />
       <Page path="/admin-yh" component={AdminPage} />
-      <Page path="/result/:type" component={ResultPage} />
+      <Page path="/result/:target" component={ResultPage} />
       <Page path="/*" component={NotFound} title="ご指定のページが見つかりません" />
     </Switch>
   </BrowserRouter>

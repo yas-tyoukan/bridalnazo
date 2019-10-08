@@ -13,7 +13,6 @@ import Typography from '~/components/atoms/Typography';
 import Button from '~/components/atoms/Button';
 import { notifyMessage } from '../../../actions/notify';
 import FooterButtonWrapper from '../../atoms/FooterButtonWrapper';
-import NotFound from '~/components/pages/NotFound';
 
 const TARGET_MEGANE = 'megane-is-good';
 const TARGET_YUBIWA = 'yubiwa-is-beautiful';
@@ -42,6 +41,7 @@ const validatePassword = (value, target) => {
 const mapStateToProps = ({ youFindPage }, ownProps) => ({
   ...youFindPage,
   ...ownProps.match.params,
+  ...ownProps.history.location.state,
 });
 
 const mapDispatchToProps = dispatch => ({
@@ -60,12 +60,14 @@ export class YouFindPageInner extends React.PureComponent {
     history: PropTypes.shape({
       push: PropTypes.func.isRequired,
     }).isRequired,
+    isValidPassword: PropTypes.bool,
     loading: PropTypes.bool,
     target: PropTypes.string.isRequired,
   };
 
   static defaultProps = {
     loading: false,
+    isValidPassword: false,
   };
 
   constructor() {
@@ -120,9 +122,19 @@ export class YouFindPageInner extends React.PureComponent {
     const {
       loading,
       target,
+      isValidPassword,
     } = this.props;
-    if (!isValidTarget(target)) {
-      return <NotFound />;
+    if (!isValidTarget(target) || !isValidPassword) {
+      return (
+        <>
+          <Typography variant="h2" color="deep-gray" align="center">
+            エラー
+          </Typography>
+          <Typography variant="h3" color="deep-gray" align="center">
+            パスワードを入れるページからやり直してね
+          </Typography>
+        </>
+      );
     }
     if (loading) {
       return <Loading />;
@@ -134,8 +146,8 @@ export class YouFindPageInner extends React.PureComponent {
       imageEl = <img src="/img/megane.jpg" width="300" alt={label} />;
     } else if (target === TARGET_YUBIWA) {
       label = 'ゆびわ';
+      imageEl = <img src="/img/yubiwa.jpg" width="300" alt={label} />;
     }
-
 
     return (
       <WithNavigationTemplate

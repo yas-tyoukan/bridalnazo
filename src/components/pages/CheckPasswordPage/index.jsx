@@ -79,7 +79,7 @@ export class CheckPasswordPageInner extends React.PureComponent {
       return;
     }
     const { history } = this.props;
-    history.push(`/find/${target}`);
+    history.push({ pathname: `/find/${target}`, state: { isValidPassword: true } });
   }
 
   render() {
