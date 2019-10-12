@@ -142,7 +142,6 @@ export class CheckPasswordPageInner extends React.PureComponent {
             }}
             placeholder="パスコード"
             fullWidth
-            autoFocus
           />
         </div>
       </WithNavigationTemplate>

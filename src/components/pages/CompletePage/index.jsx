@@ -41,6 +41,9 @@ const CompletePageInner = ({ target }) => {
           <br />
           完全クリアおめでとう！
         </Typography>
+        <div style={{ textAlign: 'center', marginTop: '20px' }}>
+          <img width="300" src="/img/omedeto.jpg" alt="complete" />
+        </div>
       </div>
     );
   }
